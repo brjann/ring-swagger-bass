@@ -26,7 +26,7 @@
 (defn- serve [{:keys [path root] :or {path "/", root "swagger-ui"} :as options}]
   (let [f (fn [{request-uri :uri :as req}]
             (let [;; Prefix path with servlet-context and compojure context
-                  uri (swagger/join-paths (:context req) path)]
+                  uri (swagger/join-paths "" #_(:context req) path)]
               ;; Check if requested uri is under swagger-ui path and what file is requested
               (when-let [req-path (get-path uri request-uri)]
                 (condp = req-path
